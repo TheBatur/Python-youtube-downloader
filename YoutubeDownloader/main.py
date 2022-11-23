@@ -6,7 +6,7 @@ def Download(link):
     try:
 
         if(secim=="3"):
-            print("\nYükleniyor..")
+            print("\nDownloading..")
             video = youtubeObject.streams.filter(only_audio=True).first()
             out_file=video.download("C:\YoutubeDownloader")
 
@@ -15,23 +15,22 @@ def Download(link):
             os.rename(out_file, new_file)
 
         if(secim=="4"):
-            print("\nYükleniyor..")
+            print("\nDownloading..")
             youtubeObject = youtubeObject.streams.get_highest_resolution()
             youtubeObject.download("C:\YoutubeDownloader")
 
     except:
-        print("Hata")
-    print('Yükleme konumu: "C:\YoutubeDownloader"')
-    print("İşlem bitti\n\n")
+        print("Error")
+    print('Download Location: "C:\YoutubeDownloader"')
+    print("Transaction Finished\n\n")
 
 while(True):
     link = input("Youtube video URL: ")
     youtubeObject = YouTube(link)
 
-    print("\nBaşlık: ", youtubeObject.title)
-    print("İzlenme sayısı: ", youtubeObject.views)
-    print("Video Uzunluğu:", youtubeObject.length, "saniye\n")
+    print("\nTitle: ", youtubeObject.title)
+    print("Views: ", youtubeObject.views)
+    print("Video Length:", youtubeObject.length, "Second\n")
 
-    secim= input("Yapmak istediğiniz işlemi giriniz.\nMP3 için'3'\nMP4(720P) için '4' yazınız.\n")
+    secim= input("Enter the action you want to do.\n'3' for MP3\n'4' for MP4(720P)\n")
     Download(link)
-
